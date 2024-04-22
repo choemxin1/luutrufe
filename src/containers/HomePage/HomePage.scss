@@ -1,0 +1,115 @@
+.slick-prev {
+    background: #fff !important;
+     left: -10px !important;
+     width: 44px !important;
+     height: 48px !important;
+     z-index: 1000 !important;
+     border: 2px solid #d7d7d7 !important;
+     // position: relative;
+ }
+ .slick-prev:before {
+     font-family: FontAwesome !important;
+     color: red !important;
+     //  content: "\e257"!important;
+ }
+ .slick-next {
+     background: #fff !important;
+     right: -10px !important;
+     width: 44px !important;
+     height: 48px !important;
+     z-index: 1000 !important;
+     border: 2px solid #d7d7d7 !important;
+ }
+ .slick-next:before {
+     font-family: FontAwesome !important;
+     color: red !important;
+ }
+ .slick-disabled {
+    display: none !important;
+ }
+ .section-specialty{
+    background: #f5f5f5;
+    height: 330px;
+    
+    .specialty-container {
+        margin: 0  50px;
+        display: flex;
+        flex-direction: column;
+        .specialty-header{
+            height: 60px;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            .title-section{
+                font-size: 22px;
+                font-weight: 600;
+            }
+            .btn-section {
+                float: right;
+                padding: 10px 15px;
+                border: none;
+                outline: none;
+                display: block;
+                color: black;
+                background: #ebebeb;
+                cursor: pointer;
+                text-transform: uppercase;
+                &:hover {
+                    background: yellow;
+                    color: white;
+                }
+            }
+        }
+        .specialty-body{
+            .img-cus {
+                
+                img {
+                    width: 95%;
+                }
+                &.OutStandingDoctor {
+                    margin-top: 18%;
+                    border: 1px solid red;
+                    padding: 20px 0;
+                    width: 95% !important;
+                    .OutStandingDoctorImg{
+                        height: 120px;
+                        width: 120px;
+                        margin: 0 auto;
+                        border-radius: 50%;
+                    }
+                    .OutStandingDoctorText{
+                        margin: 0 auto;
+                    }
+                }
+            }
+            
+        }
+    }
+   
+    // h3 {
+    //     display: block;
+    //     width: 100%;
+    //     height: 100%;
+    // }
+}
+.home-footer {
+    text-align: center;
+    padding-top: 8px;
+    text-decoration: unset;
+}
+.section-about-header{
+    font-size: 20px;
+    padding: 20px 50px;
+}
+.section-about-content {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding: 0 50px;
+    .content-left{
+        width: 50%;
+    }
+    .content-right {
+        width: 50%;
+        text-align: justify;
+    }
+}

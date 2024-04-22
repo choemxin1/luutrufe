@@ -11,17 +11,23 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 import { path } from '../utils'
 
 import Home from '../routes/Home';
-import Login from '../routes/Login';
-import Header from './Header/Header';
+// import Login from '../routes/Login';
+import Login from './Auth/Login';
 import System from '../routes/System';
-
+import Doctor from '../routes/Doctor.js';
 import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
-
+import HomePage from './HomePage/HomePage.js';
+import CustomScrollbars from '../components/CustomScrollbars.js';
+import DetailDoctor from './Patient/Doctor/DetailDoctor.js';
+import VerifyEmail from './Patient/VerifyEmail.js';
+import DetailSpecialty from './Patient/Specialty/DetailSpecialty.js';
+import DetailClinic from './Patient/Clinic/DetailClinic.js';
 class App extends Component {
 
     handlePersistorState = () => {
         const { persistor } = this.props;
+
         let { bootstrapped } = persistor.getState();
         if (bootstrapped) {
             if (this.props.onBeforeLift) {
@@ -39,26 +45,42 @@ class App extends Component {
     }
 
     render() {
+        console.log('app', this.props)
         return (
             <Fragment>
+
                 <Router history={history}>
                     <div className="main-container">
-                        <ConfirmModal />
-                        {this.props.isLoggedIn && <Header />}
+                        {/* <ConfirmModal /> */}
+                        {/* {this.props.isLoggedIn && <Header />} */}
 
-                        <span className="content-container">
-                            <Switch>
-                                <Route path={path.HOME} exact component={(Home)} />
-                                <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                            </Switch>
-                        </span>
+                        <div className="content-container">
+                            <CustomScrollbars style={{ height: '100vh', width: '100%' }}>
+                                <Switch>
+                                    <Route path={path.HOME} exact component={(Home)} />
+                                    <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
+                                    <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+                                    <Route path={path.DOCTOR} component={userIsAuthenticated(Doctor)} />
+                                    <Route path={path.HOMEPAGE} component={HomePage} />
+                                    <Route path={path.DELTAIL_DOCTOR} component={DetailDoctor}/>
+                                    <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail}/>
+                                    <Route path={path.DELTAIL_SPECIALTY} component={DetailSpecialty} />
+                                    <Route path={path.DELTAIL_CLINIC} component={DetailClinic} />
+                                </Switch>
+                            </CustomScrollbars>
+                        </div>
 
                         <ToastContainer
-                            className="toast-container" toastClassName="toast-item" bodyClassName="toast-item-body"
-                            autoClose={false} hideProgressBar={true} pauseOnHover={false}
-                            pauseOnFocusLoss={true} closeOnClick={false} draggable={false}
-                            closeButton={<CustomToastCloseButton />}
+                            position="bottom-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
                         />
                     </div>
                 </Router>
@@ -70,7 +92,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.admin.isLoggedIn
+        // isLoggedIn: state.user.isLoggedIn
     };
 };
 
